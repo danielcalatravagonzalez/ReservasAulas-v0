@@ -13,7 +13,7 @@ public class PermanenciaTest {
 	private static final String ERROR_EXCEPCION = "Debería haber saltado la excepción.";
 	private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";
 	
-	private LocalDate dia = LocalDate.of(2018, 12, 1); 
+	private LocalDate dia = LocalDate.of(2018, 12, 01); 
 	Permanencia permanencia = new Permanencia(dia, Tramo.MANANA);
 
 	@Test

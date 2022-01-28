@@ -7,7 +7,7 @@ public enum Tramo {
 
 
 	Tramo(String string) {
-	this.cadenaAMostrar = string;
+		this.cadenaAMostrar = string;
 	}
 
 	@Override
