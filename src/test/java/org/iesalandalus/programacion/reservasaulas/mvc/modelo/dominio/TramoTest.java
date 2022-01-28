@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 import static org.junit.Assert.*;
 
-
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 import org.junit.Test;
 
 public class TramoTest {
