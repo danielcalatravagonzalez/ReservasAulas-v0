@@ -17,7 +17,7 @@ import javax.naming.OperationNotSupportedException;
 import org.junit.Test;
 
 public class ProfesoresTest {
-/*	
+	
 	private static final String NOMBRE_PROFESOR1 = "José Ramón";
 	private static final String NOMBRE_PROFESOR2 = "Andrés";
 	private static final String NOMBRE_PROFESOR3 = "Begoña";
@@ -365,5 +365,5 @@ public class ProfesoresTest {
 		}
 		
 	}
-*/
+
 }
