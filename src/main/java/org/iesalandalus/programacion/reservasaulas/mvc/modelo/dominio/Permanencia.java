@@ -26,7 +26,7 @@ public class Permanencia {
 		}
 	}
 
-	//Gettres y Setters de dia
+	//Getters y Setters de dia
 	public LocalDate getDia() {
 		return dia;
 	}
@@ -39,7 +39,7 @@ public class Permanencia {
 		}
 	}
 
-	//Gettres y Setters de tramo
+	//Getters y Setters de tramo
 	public Tramo getTramo() {
 		return tramo;
 	}
@@ -69,13 +69,11 @@ public class Permanencia {
 		return Objects.equals(dia, other.dia) && tramo == other.tramo;
 	}
 
+	//Método toString
 	@Override
 	public String toString() {
 
 		return "dia=" + dia.format(FORMATO_DIA)+ ", tramo=" + tramo + "";
 	}
-	
-	
-	//Constructor
 	
 }
