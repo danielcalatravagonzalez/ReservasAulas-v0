@@ -1,9 +1,10 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
 public enum Opcion {
+	//Opciones del enum Opcion
 	SALIR("Salir") {
 		public void ejecutar() {
-			vista.terminar();
+			vista.salir();
 		}
 	},
 	INSERTAR_AULA("Insertar aula") {
@@ -23,7 +24,7 @@ public enum Opcion {
 	},
 	LISTAR_AULAS("Listar aulas") {
 		public void ejecutar() {
-			vista.listarAulas();
+			vista.listarAula();
 		}
 	},
 	INSERTAR_PROFESOR("Insertar profesor") {
@@ -43,7 +44,7 @@ public enum Opcion {
 	},
 	LISTAR_PROFESORES("Listar profesores") {
 		public void ejecutar() {
-			vista.listarProfesores();
+			vista.listarProfesor();
 		}
 	},
 	INSERTAR_RESERVA("Insertar reserva") {
@@ -82,19 +83,24 @@ public enum Opcion {
 		}
 	};
 	
+	//Atributos
 	private String mensajeAMostrar;
-	private Vista vista;
+	private static Vista vista;
 
+	//Método Opcion (String)
 	private Opcion(String mensaje) {
 		this.mensajeAMostrar = mensaje;
 	}
 
+	//Método getMensaje
 	public String getMensaje() {
 		return mensajeAMostrar;
 	}
 
+	//Método ejecutar
 	public abstract void ejecutar();
 
+	//Método setVista(Vista)
 	protected static void setVista(Vista vista) {
 		if (vista == null) {
 			throw new NullPointerException("ERROR: La vista no pueda ser nula.");
@@ -102,11 +108,13 @@ public enum Opcion {
 		Opcion.vista = vista;
 	}
 
+	//Método toString
 	@Override
 	public String toString() {
 		return String.format("%d.- %s", ordinal(), getMensaje());
 	}
 
+	//Método getOpcionSegunOrdinal
 	public static Opcion getOpcionSegunOrdinal(int ordinal) {
 		if (!esOrdinalValido(ordinal)) {
 			throw new IllegalArgumentException("Ordinal de la opción no válido");
@@ -114,6 +122,7 @@ public enum Opcion {
 		return values()[ordinal];
 	}
 
+	//Método es OrdinalValido
 	public static boolean esOrdinalValido(int ordinal) {
 		return (ordinal >= 0 && ordinal <= values().length - 1);
 	}

@@ -3,9 +3,6 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
-import javax.naming.OperationNotSupportedException;
-
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
@@ -42,15 +39,14 @@ public class Consola {
 	}
 
 	// Método mostrarCabecera
-	public static void mostarCabecera(String mostrarCabecera) {
+	public static void mostrarCabecera(String mostrarCabecera) {
 		System.out.printf("%n%s%n", mostrarCabecera);
 		String cadena = "%0" + mostrarCabecera.length() + "d%n";
 		System.out.println(String.format(cadena, 0).replace("0", "-"));
 	}
 
 	// Método elegirOpcion()
-	public static Opcion elegirOpcion() {
-		Opcion[] opcion = Opcion.values();
+	public static int elegirOpcion() {
 		System.out.println("");
 		System.out.println("Por favor, elija una opción");
 		System.out.println("");
@@ -59,7 +55,7 @@ public class Consola {
 			System.out.println("Por favor, elija una opción comprendida entre 0 y 15: ");
 			opcionElegida = Entrada.entero();
 		}
-		return opcion[opcionElegida];
+		return opcionElegida;
 	}
 
 	// Método leerAula
