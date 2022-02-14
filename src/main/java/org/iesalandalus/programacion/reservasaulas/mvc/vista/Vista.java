@@ -102,7 +102,7 @@ public class Vista {
 		try {
 			Profesor profesor = Consola.leerProfesor();
 			controlador.insertarProfesor(profesor);
-			System.out.println("El profesor se ha insertado correctamente"+ NOMBRE_VALIDO);
+			System.out.println("El profesor se ha insertado correctamente"+ NOMBRE_VALIDO + CORREO_VALIDO);
 		} catch (OperationNotSupportedException|IllegalArgumentException e) {
 			System.out.println(ERROR + e.getMessage());
 		}
