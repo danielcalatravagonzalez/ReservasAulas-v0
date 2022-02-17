@@ -49,7 +49,7 @@ public enum Opcion {
 	},
 	INSERTAR_RESERVA("Insertar reserva") {
 		public void ejecutar() {
-			vista.realizarReserva();;
+			vista.realizarReserva();
 		}
 	},
 	BORRAR_RESERVA("Borrar reserva") {
