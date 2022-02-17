@@ -27,11 +27,11 @@ public class Profesor {
 	public Profesor(Profesor otroProfesor) {
 		if (otroProfesor == null) {
 			throw new NullPointerException("ERROR: No se puede copiar un profesor nulo.");
-		} else {
+			} else {
 			setNombre(otroProfesor.getNombre());
 			setCorreo(otroProfesor.getCorreo());
 			setTelefono(otroProfesor.getTelefono());
-		}
+			}
 	}
 
 	// Setter de nombre
@@ -58,16 +58,12 @@ public class Profesor {
 
 	// Setter de telefono
 	public void setTelefono(String telefono) {
-		if (telefono != null) {
-			if (telefono.trim().isEmpty()) {
-				throw new IllegalArgumentException("ERROR: El teléfono del profesor no es válido.");
-			}
-			if (telefono.trim().matches(ER_TELEFONO)) {
-				this.telefono = telefono;
-			}
-		}
+		  if (telefono == "" && telefono.length() != 9 && !telefono.matches(ER_TELEFONO)) {
+		      throw new IllegalArgumentException("ERROR: El teléfono del profesor no es válido.");
+		    }
 
-	}
+		    this.telefono = telefono;
+		  }
 
 	// Getter de nombre
 	public String getNombre() {
@@ -84,12 +80,12 @@ public class Profesor {
 		return telefono;
 	}
 
+	// Métodos hashCode y equals
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombre);
+		return Objects.hash(nombre, correo, telefono);
 	}
-
-	// Métodos hashCode y equals
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

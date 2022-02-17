@@ -10,12 +10,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
 
 public class Vista {
 	//Atributos
-	private static final String ERROR = "ERROR";
-	private static final String NOMBRE_VALIDO = "Nombre válido";
-	private static final String CORREO_VALIDO = "Correo válido";
-	private Controlador controlador;
+	Controlador controlador;
 
-	//Constructor por defecto
+//Constructor por defecto
 	public Vista() {
 		Opcion.setVista(this);
 	}
@@ -48,9 +45,9 @@ public class Vista {
 		try {
 			Aula aula = Consola.leerAula();
 			controlador.insertarAula(aula);
-			System.out.println("Se ha insertado el aula correctamente"+ NOMBRE_VALIDO);
-		} catch (OperationNotSupportedException|IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println("Se ha insertado el aula correctamente");
+		} catch (OperationNotSupportedException|NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -61,8 +58,8 @@ public class Vista {
 			Aula aula = Consola.leerAula();
 			controlador.borrarAula(aula);
 			System.out.println("Se ha borrado el aula correctamente.");
-		} catch (OperationNotSupportedException|IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+		} catch (OperationNotSupportedException|NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -79,7 +76,7 @@ public class Vista {
 				System.out.println("No existe ningún aula con ese nombre");
 			}
 		} catch (IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -102,9 +99,9 @@ public class Vista {
 		try {
 			Profesor profesor = Consola.leerProfesor();
 			controlador.insertarProfesor(profesor);
-			System.out.println("El profesor se ha insertado correctamente"+ NOMBRE_VALIDO + CORREO_VALIDO);
-		} catch (OperationNotSupportedException|IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println("El profesor se ha insertado correctamente");
+		} catch (OperationNotSupportedException|NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -114,9 +111,9 @@ public class Vista {
 		try {
 			Profesor profesor = Consola.leerProfesor();
 			controlador.borrarProfesor(profesor);
-			System.out.println("El profesor se ha borrado correctamente correctamente.");
-		} catch (OperationNotSupportedException|IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println("El profesor se ha borrado correctamente.");
+		} catch (OperationNotSupportedException|NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -133,7 +130,7 @@ public class Vista {
 				System.out.println("No existe ningún profesor con ese nombre");
 			}
 		} catch (IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -154,21 +151,19 @@ public class Vista {
 	public void realizarReserva() {
 		Consola.mostrarCabecera("Realizar reserva");
 		try {
-			Profesor profesor = Consola.leerProfesor();
-			Reserva reserva = leerReserva(profesor);
-			controlador.realizarReserva(reserva);
+			controlador.realizarReserva(leerReserva(Consola.leerProfesor()));
 			System.out.println("La reserva se ha realizado correctamente");
 		} catch (OperationNotSupportedException e) {
-			System.out.println(ERROR + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 
 	//Método leerReserva(Profesor)
 	private Reserva leerReserva(Profesor profesor) {
 		Consola.mostrarCabecera("Leer reserva");
-		Aula aula = Consola.leerAula();
 		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		return new Reserva(profesor, aula, permanencia);
+		Reserva reserva = new Reserva(profesor, Consola.leerAula(), permanencia);
+		return reserva;
 	}
 
 	//Método anularReserva
@@ -179,8 +174,8 @@ public class Vista {
 			Reserva reserva = leerReserva(profesor);
 			controlador.anularReserva(reserva);
 			System.out.println("La reserva se ha anulado correctamente.");
-		} catch (OperationNotSupportedException|IllegalArgumentException e) {
-			System.out.println(ERROR + e.getMessage());
+		} catch (OperationNotSupportedException|NullPointerException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 

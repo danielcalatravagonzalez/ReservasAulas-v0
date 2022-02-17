@@ -12,7 +12,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.Reservas;
 
 public class Modelo {
 	// Atributos
-	private static int CAPACIDAD = 100;
+	private static int CAPACIDAD = 10;
 	Profesores profesores;
 	Aulas aulas;
 	Reservas reservas;

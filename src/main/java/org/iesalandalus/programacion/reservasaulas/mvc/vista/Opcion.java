@@ -49,12 +49,12 @@ public enum Opcion {
 	},
 	INSERTAR_RESERVA("Insertar reserva") {
 		public void ejecutar() {
-			vista.insertarProfesor();
+			vista.realizarReserva();;
 		}
 	},
 	BORRAR_RESERVA("Borrar reserva") {
 		public void ejecutar() {
-			vista.borrarProfesor();
+			vista.anularReserva();
 		}
 	},
 	LISTAR_RESERVAS("Listar reservas") {
@@ -101,7 +101,7 @@ public enum Opcion {
 	public abstract void ejecutar();
 
 	//Método setVista(Vista)
-	protected static void setVista(Vista vista) {
+	public static void setVista(Vista vista) {
 		if (vista == null) {
 			throw new NullPointerException("ERROR: La vista no pueda ser nula.");
 		}

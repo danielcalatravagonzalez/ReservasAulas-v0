@@ -2,7 +2,6 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
@@ -19,23 +18,10 @@ public class Consola {
 
 	// Método mostrarMenu
 	public static void mostrarMenu() {
-		System.out.println("Bienvenido al sistema gestor de reservas de aulas, elige una opción:");
-		System.out.println("0. Salir.");
-		System.out.println("1. Insertar aula.");
-		System.out.println("2. Borrar aula.");
-		System.out.println("3. Buscar aula.");
-		System.out.println("4. Listar aulas.");
-		System.out.println("5. Insertar profesor.");
-		System.out.println("6. Borrar profesor.");
-		System.out.println("7. Buscar profesor.");
-		System.out.println("8. Listar profesores.");
-		System.out.println("9. Insertar reserva.");
-		System.out.println("10. Borrar reserva.");
-		System.out.println("11. Listar reservas.");
-		System.out.println("12. Listar reservas aula.");
-		System.out.println("13. Listar reservas profesor.");
-		System.out.println("14. Listar reservas permanencia.");
-		System.out.println("15. Consultar disponibilidad.");
+		mostrarCabecera("Bienvenido al gestor de reservas de aulas");
+		for (Opcion opcion : Opcion.values()) {
+			System.out.println(opcion);
+		}
 	}
 
 	// Método mostrarCabecera
@@ -51,7 +37,7 @@ public class Consola {
 		System.out.println("Por favor, elija una opción");
 		System.out.println("");
 		int opcionElegida = Entrada.entero();
-		while (opcionElegida < 0 || opcionElegida > 15) {
+		while (opcionElegida < 0 || opcionElegida > Opcion.values().length) {
 			System.out.println("Por favor, elija una opción comprendida entre 0 y 15: ");
 			opcionElegida = Entrada.entero();
 		}
@@ -77,7 +63,11 @@ public class Consola {
 		String correoProfesor = Entrada.cadena();
 		System.out.println("Introduce el teléfono del profesor:");
 		String telefonoProfesor = Entrada.cadena();
-		return new Profesor(leerNombreProfesor(), correoProfesor, telefonoProfesor);
+		if (telefonoProfesor == null || telefonoProfesor.isBlank()) {
+			return new Profesor(leerNombreProfesor(), correoProfesor);
+		} else {
+			return new Profesor(leerNombreProfesor(), correoProfesor, telefonoProfesor);
+		}
 	}
 
 	// Método leerNombreProfesor
@@ -89,33 +79,23 @@ public class Consola {
 
 	// Método leerTramo
 	public static Tramo leerTramo() {
-		System.out.println("Introduzca un Tramo poninendo 1 o 2: Mañana(1) Tarde(2)");
-		int tramo = Entrada.entero();
-		switch (tramo) {
+		System.out.println("Eliga un tramo insertando 1 (Mañana) o 2 (Tarde): ");
+		int indice = Entrada.entero();
+		switch (indice) {
 		case 1:
 			return Tramo.MANANA;
+
 		case 2:
 			return Tramo.TARDE;
-			default:
-				return null;
-			
+
+		default:
+			return null;
 		}
 	}
 
 	// Método leerDia
 	public static LocalDate leerDia() {
-		DateTimeFormatter formatoCadena = FORMATO_DIA;
-		LocalDate fecha = null;
-		boolean fechaValida = false;
-		do {
-			try {
-				System.out.println("Introduzca una fecha con el siguiente formato: dd/MM/aaaa:");
-				fecha = LocalDate.parse(Entrada.cadena(), formatoCadena);
-				fechaValida = true;
-			} catch (DateTimeParseException e) {
-				fechaValida = false;
-			}
-		} while (!fechaValida);
-		return fecha;
+		System.out.println("Introduzca una fecha con el siguiente formato: dd/MM/aaaa:");
+		return LocalDate.parse(Entrada.cadena(), FORMATO_DIA);
 	}
 }
